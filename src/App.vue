@@ -1,28 +1,42 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <Button>clicker</Button>
+    <Table :values='table'/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios';
+import Button from '@/components/Common/Button';
+import Table from '@/components/Table/Table';
 
 export default {
   name: 'app',
-  components: {
-    HelloWorld
-  }
-}
+  components: { Table, Button },
+  data: () => ({
+    table: [
+      
+    ],
+  }),
+  methods: {
+    addToTable(element) {
+      this.table.push(element);
+    },
+    api() {
+      return axios.create({
+        baseURL: 'https://api.nbp.pl/api/',
+        timeout: 1000,
+        headers: {Accept : 'application/json'}
+      });
+    }
+  },
+  mounted() {
+    this.api().get('exchangerates/tables/a/')
+      .then(response => response.data[0].rates.forEach(i => this.addToTable(i)));
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+
 </style>
