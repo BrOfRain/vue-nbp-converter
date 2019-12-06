@@ -1,18 +1,16 @@
 <template>
   <div>
-    <Button>clicker</Button>
     <Table :values='table'/>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import Button from '@/components/Common/Button';
 import Table from '@/components/Table/Table';
 
 export default {
   name: 'app',
-  components: { Table, Button },
+  components: { Table },
   data: () => ({
     table: [
       
