@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Converter :values='table' />
     <Table :values='table'/>
   </div>
 </template>
@@ -7,10 +8,11 @@
 <script>
 import axios from 'axios';
 import Table from '@/components/Table/Table';
+import Converter from '@/components/Converter/Converter';
 
 export default {
   name: 'app',
-  components: { Table },
+  components: { Table, Converter },
   data: () => ({
     table: [
       

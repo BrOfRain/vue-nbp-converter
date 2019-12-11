@@ -18,7 +18,7 @@ import axios from 'axios';
 export default {
   data: () => ({
     table: [
-      { currency: 'polski złoty', code: 'PLN', mid: 1 },
+      
     ],
     fromCurrency: '',
     fromValue: 0,
