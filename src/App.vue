@@ -1,18 +1,19 @@
 <template>
   <div>
-    <Converter :values='table' />
-    <Table :values='table'/>
+    <a href="/">Table</a>
+    &#09;
+    <a href="/converter">Converter</a>
+    <hr>
+    <router-view :values='table'></router-view>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import Table from '@/components/Table/Table';
-import Converter from '@/components/Converter/Converter';
 
 export default {
   name: 'app',
-  components: { Table, Converter },
+  components: {  },
   data: () => ({
     table: [
       
