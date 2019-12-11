@@ -1,8 +1,8 @@
 <template>
   <div>
-    <a href="/">Table</a>
+    <a href="#/">Table</a>
     &#09;
-    <a href="/converter">Converter</a>
+    <a href="#/converter">Converter</a>
     <hr>
     <router-view :values='table'></router-view>
   </div>
