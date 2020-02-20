@@ -1,50 +1,66 @@
 <template>
-  <form @submit.prevent="" @change="convert()">
-    <select v-model="fromCurrency">
-      <option v-for="item in table" :key="item.code" :value="item.code">{{item.currency}}</option>
-    </select>
-    <input type="number" v-model="fromValue"/>
+  <div id="Converter">
+    <button v-on:click="reset">Reset</button>
+    <br />
+    <br />
+    <v-select
+      class="select"
+      :options="table"
+      label="currency"
+      placeholder="wybierz walutę"
+      v-model="fromCurrency"
+    />
+    <input class="input" type="number" min="0" step="1" v-model="fromValue" />
+    {{ (fromCurrency ? `(${fromCurrency.code})` : "") }}
     ===>
-    <select v-model="toCurrency">
-      <option v-for="item in table" :key="item.code" :value="item.code">{{item.currency}}</option>
-    </select>
-    <hr/>
-    <h3><strong>{{fromValue}}</strong> {{fromCurrency}} => <strong>{{toValue.toFixed(4)}}</strong> {{toCurrency}}</h3> 
-  </form>
+    {{ (toValue >= 0 ? toValue.toFixed(3) : "") }}
+    <v-select
+      class="select"
+      :options="table"
+      label="currency"
+      placeholder="wybierz walutę"
+      v-model="toCurrency"
+    />
+    {{ (toCurrency ? `(${toCurrency.code})` : "") }}
+  </div>
 </template>
 
 <script>
-import axios from 'axios';
 export default {
+  name: "Converter",
+  props: {
+    table: { type: Array, required: true }
+  },
   data: () => ({
-    table: [
-      
-    ],
-    fromCurrency: '',
+    fromCurrency: undefined,
     fromValue: 0,
-    toCurrency: '',
-    toValue: 0,
+    toCurrency: undefined
   }),
-  methods: {
-    api() {
-      return axios.create({
-        baseURL: 'http://api.nbp.pl/api/',
-        headers: { Accept: 'application/json' }
-      });
-    },
-    addToTable(element) {
-      this.table.push(element);
-    },
-    convert() {
-      this.toValue = this.fromValue * this.getMid(this.fromCurrency) / this.getMid(this.toCurrency);
-    },
-    getMid(v) {
-      return (this.table.filter(({code}) => code === v)[0] || {mid: 0}).mid;
+  computed: {
+    toValue: function() {
+      if (!this.fromCurrency || !this.toCurrency) return;
+      return (this.fromValue * this.fromCurrency.mid) / this.toCurrency.mid;
     }
   },
-  mounted() {
-    this.api().get('exchangerates/tables/a/')
-      .then(res => res.data[0].rates.forEach(i => this.addToTable(i)));
-  },
+  methods: {
+    reset() {
+      this.fromCurrency = undefined;
+      this.fromValue = 0;
+      this.toCurrency = undefined;
+    }
+  }
 };
 </script>
+
+<style scoped>
+#Converter {
+  font-size: 18px;
+}
+.select {
+  display: inline-block;
+  width: 300px;
+}
+.input {
+  font-size: 18px;
+}
+</style>

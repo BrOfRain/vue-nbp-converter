@@ -1,13 +1,15 @@
 <template>
   <div>
     <h3>
-      Author:
+      Autor:
       <b>RainFetch</b>
     </h3>
-    <router-link to="/">Table</router-link>&#09;
-    <router-link to="/converter">Converter</router-link>
     <hr />
-    <router-view :values="table"></router-view>
+    <router-link to="/">Tabela</router-link>
+    <br />
+    <router-link to="/converter">Konwerter walut</router-link>
+    <hr />
+    <router-view :table="table"></router-view>
   </div>
 </template>
 <script>
@@ -17,7 +19,13 @@ export default {
   name: "app",
   components: {},
   data: () => ({
-    table: []
+    table: [
+      {
+        currency: "złoty (Polska)",
+        code: "PLN",
+        mid: 1
+      }
+    ]
   }),
   methods: {
     addToTable(element) {
