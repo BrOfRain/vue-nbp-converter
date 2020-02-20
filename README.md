@@ -1,9 +1,11 @@
 ## Simple currency converter
+<pre>
 
 api used: http://api.nbp.pl/
 
 
 
+</pre>
 ## Project setup
 ```
 npm install
