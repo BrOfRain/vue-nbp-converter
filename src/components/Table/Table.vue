@@ -25,18 +25,4 @@ export default {
 </script>
 
 <style scoped>
-table {
-  border: solid 1px #DDEEEE;
-  border-collapse: collapse;
-  border-spacing: 0;
-  font: normal 13px Arial, sans-serif;
-}
-th {
-  background-color: #C6D7D7;
-  border: solid 1px #DDEEEE;
-  color: #336B6B;
-  padding: 10px;
-  text-align: left;
-  text-shadow: 1px 1px 1px #fff;
-}
 </style>

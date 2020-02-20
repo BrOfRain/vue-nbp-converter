@@ -4,7 +4,7 @@
       <option v-for="item in table" :key="item.code" :value="item.code">{{item.currency}}</option>
     </select>
     <input type="number" v-model="fromValue"/>
-    <br/>
+    ===>
     <select v-model="toCurrency">
       <option v-for="item in table" :key="item.code" :value="item.code">{{item.currency}}</option>
     </select>

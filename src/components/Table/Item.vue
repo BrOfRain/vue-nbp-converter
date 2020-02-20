@@ -15,16 +15,4 @@ export default {
 </script>
 
 <style scoped>
-tr:nth-child(even) {
-  background-color: #EAF5F5;
-}
-tr:hover {
-  background-color: #C6D7D7;
-}
-td {
-  border: solid 1px #DDEEEE;
-  color: #333;
-  padding: 10px;
-  text-shadow: 1px 1px 1px #fff;
-}
 </style>

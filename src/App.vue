@@ -1,23 +1,23 @@
 <template>
   <div>
-    <a href="#/">Table</a>
-    &#09;
-    <a href="#/converter">Converter</a>
-    <hr>
-    <router-view :values='table'></router-view>
+    <h3>
+      Author:
+      <b>RainFetch</b>
+    </h3>
+    <router-link to="/">Table</router-link>&#09;
+    <router-link to="/converter">Converter</router-link>
+    <hr />
+    <router-view :values="table"></router-view>
   </div>
 </template>
-
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-  name: 'app',
-  components: {  },
+  name: "app",
+  components: {},
   data: () => ({
-    table: [
-      
-    ],
+    table: []
   }),
   methods: {
     addToTable(element) {
@@ -25,19 +25,21 @@ export default {
     },
     api() {
       return axios.create({
-        baseURL: 'https://api.nbp.pl/api/',
+        baseURL: "https://api.nbp.pl/api/",
         timeout: 1000,
-        headers: {Accept : 'application/json'}
+        headers: { Accept: "application/json" }
       });
     }
   },
   mounted() {
-    this.api().get('exchangerates/tables/a/')
-      .then(response => response.data[0].rates.forEach(i => this.addToTable(i)));
-  },
+    this.api()
+      .get("exchangerates/tables/a/")
+      .then(response =>
+        response.data[0].rates.forEach(i => this.addToTable(i))
+      );
+  }
 };
 </script>
 
 <style scoped>
-
 </style>
