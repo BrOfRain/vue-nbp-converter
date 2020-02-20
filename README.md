@@ -1,5 +1,8 @@
-### Simple currency converter
+## Simple currency converter
+
 api used: http://api.nbp.pl/
+
+
 
 ## Project setup
 ```
